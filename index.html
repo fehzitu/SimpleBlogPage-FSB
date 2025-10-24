@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FSB - Fehzitu Simple Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="app">
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <h1 class="logo" onclick="app.showHome()">FSB</h1>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="container">
+        <div id="home-view" class="view">
+          <div class="hero">
+            <h2 class="hero-title">WELCOME</h2>
+            <p class="hero-subtitle">
+              A retro-styled blogging simulator experience by fehzitu
+            </p>
+          </div>
+          <button class="btn-new-post" onclick="app.showNewPostForm()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            NEW POST
+          </button>
+          <div id="posts-grid" class="posts-grid"></div>
+        </div>
+
+        <div id="post-view" class="view hidden">
+          <button class="btn-back" onclick="app.showHome()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            BACK
+          </button>
+          <div id="post-content"></div>
+          <div class="post-actions">
+            <button class="btn-edit" onclick="app.editCurrentPost()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+              </svg>
+              EDIT
+            </button>
+            <button class="btn-delete" onclick="app.deleteCurrentPost()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path
+                  d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                </path>
+              </svg>
+              DELETE
+            </button>
+          </div>
+
+          <div class="comments-section">
+            <h3 class="comments-title">COMMENTS</h3>
+            <div class="comment-form">
+              <input type="text" id="comment-author" class="input" placeholder="Your name" maxlength="30">
+              <textarea id="comment-text" class="textarea" placeholder="Write a comment..." rows="3"
+                maxlength="500"></textarea>
+              <button class="btn-submit" onclick="app.addComment()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                POST COMMENT
+              </button>
+            </div>
+            <div id="comments-list" class="comments-list"></div>
+          </div>
+        </div>
+
+        <div id="form-view" class="view hidden">
+          <button class="btn-back" onclick="app.cancelForm()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            CANCEL
+          </button>
+          <div class="form-container">
+            <h2 id="form-title" class="form-heading">NEW POST</h2>
+            <form id="post-form" onsubmit="app.savePost(event)">
+              <input type="hidden" id="post-id">
+              <div class="form-group">
+                <label for="post-title" class="label">TITLE</label>
+                <input type="text" id="post-title" class="input" required maxlength="100">
+              </div>
+              <div class="form-group">
+                <label for="post-author" class="label">AUTHOR</label>
+                <input type="text" id="post-author" class="input" required maxlength="50">
+              </div>
+              <div class="form-group">
+                <label for="post-excerpt" class="label">EXCERPT</label>
+                <textarea id="post-excerpt" class="textarea" rows="2" maxlength="200"
+                  required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="post-content-input" class="label">CONTENT</label>
+                <textarea id="post-content-input" class="textarea" rows="10" required></textarea>
+              </div>
+              <button type="submit" class="btn-save">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                  <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                  <polyline points="7 3 7 8 15 8"></polyline>
+                </svg>
+                SAVE POST
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2025 FSB - All rights reserved
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
