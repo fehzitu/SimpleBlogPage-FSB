@@ -1,4 +1,6 @@
-## 📝 Mini Blog in HTML
+## <img align="left" alt="Html" title="Html" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" />
+  <img align="left" alt="Css" title="Css" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" />
+  <img align="left" alt="Js" title="Js" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" /> Mini Blog in HTML
 
 A small project developed as a test to practice **HTML**, **CSS**, and **JavaScript**.  
 The goal is to simulate the basic structure of a blog, with posts, a simple layout, and a clean design.
